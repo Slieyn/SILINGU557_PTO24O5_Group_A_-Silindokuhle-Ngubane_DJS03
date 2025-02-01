@@ -1,0 +1,84 @@
+# Written Report: Refactoring the Book Connect App
+
+## Code Analysis
+
+The Book Connect app is a JavaScript based book, has an HTML and CSS strucutres. Including the Data.js file for the book information for the Authors. The app allows the user to search, filter, and view books based on different criteria such as title, author, and genre. The current implementation uses event listeners to handle user interactions and dynamically updates the UI.
+
+### JavaScript functions included, invlove:
+
+- Handling user interactions for filtering books based on search criteria.
+
+- Updating the UI dynamically when users select books.
+
+- Managing the visibility of overlays and modals.
+
+- Rendering books dynamically in response to search queries.
+
+# Plan Refactoring
+
+Areas of Imporvement:
+
+- Repetitive Code on creating book elements, light and dark mode and handling UI updates.
+- Lack of Abstraction, the code was manipulating with the DOM making it harder to maintain and less modular.
+- Lack of Documentation and Comments, making it hard to read and understand.
+- Better Use of Objects and Functions, the book, author and genre had to be structured into objects for better organization.
+- Proper Event handling, ensuring the logic should be separated from the UI logic to improve code readability and maintainability
+
+## Implement Abstraction
+
+- To improve maintainability and efficiency, the following refactoring steps were taken:
+
+## Objects
+
+- Created objects for books, authors, and genres to centralize data handling.
+
+- Used structured objects to store UI elements, reducing repetitive DOM queries.
+
+## Functions
+
+- toggleOverlay(selector, state): A function to open/close overlays dynamically.
+
+- renderBooks(bookList): A function to create book preview elements and update the book list.
+
+- handleSearch(event): A function to process search queries and filter books accordingly.
+
+- updateBookPreview(bookId): A function to dynamically update the book preview modal.
+
+# Enhance Functionality
+
+After refactoring, all functionalities were tested to ensure they work as expected:
+
+- Book Search: Users can search by title, author, or genre, and results update dynamically.
+
+- Book Preview Modal: Clicking on a book displays its details correctly.
+
+- Pagination and Load More: Users can load more books incrementally.
+
+- Settings Panel: Users can switch themes between "day" and "night" modes.
+
+# Documentation and Comments
+
+Comprehensive comments were added to explain each function and its purpose. Key documentation updates include:
+
+- Inline comments explaining complex logic.
+
+- Function documentation using JSDoc-style comments.
+
+- Improved readability through meaningful variable names and consistent indentation.
+
+# Adherence to Styleguides
+
+Refactored code follows JavaScript best practices:
+
+- Used camelCase for variable and function names.
+
+- Applied consistent indentation and spacing for readability.
+
+- Minimized direct DOM manipulation by caching elements in variables.
+
+- Followed modular design principles for better maintainability.
+
+# Conclusion
+
+Refactoring was not easy at all, but breaking it down but understanding the HTML and CSS strucutre first gave me direction. I then examined the Book Connect App and identified the errors. I went on to analyse the JavaScript part. Line by line. Adding comments for better understanding and readability. The code started to improve by those basic steps. I had to identity the parts of code that need Abstracrion, SOLID, documentation, comments and ESLint guidelines.This helped me to navigate throughout the code much easier. I made a lot of mistakes though on the modification part, I tried to edit the code and I realised that that made the code fail. I decided to stick to the basics and correct the code and not complicate it further.
+By implementing abstraction through objects and functions, the code is now more efficient, easier to extend, and adheres to best coding practices.
