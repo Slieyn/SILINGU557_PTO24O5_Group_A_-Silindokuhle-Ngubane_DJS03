@@ -7,6 +7,7 @@
 
     <title>Book Connect</title>
 
+<!--Book Cover Images-->
     <link rel="apple-touch-icon" sizes="180x180" href="/meta/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/meta/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/meta/favicon-16x16.png">
@@ -17,6 +18,7 @@
     <meta name="msapplication-config" content="/meta/browserconfig.xml">
     <meta name="theme-color" content="#0a0a14">
 
+<!--Fonts-->
     <link rel="stylesheet" href="./styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,12 +27,13 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap"
       rel="stylesheet"
     />
-
+<!--Links to the scrips.js and data.js file-->
     <script type="module" src="./scripts.js"></script>
     <script type="module" src="./data.js"></script>
   </head>
   <body>
 
+    <!--Header-->
     <header class="header">
       <div class="header__inner">
         <div class="header__logo">
@@ -63,6 +66,7 @@
           </svg>
         </div>
         <div>
+          <!--Search button-->
           <button class="header__button" data-header-search>
             <svg
               class="header__icon"
@@ -74,7 +78,7 @@
               ></path>
             </svg>
           </button>
-
+        <!--Settings button-->
           <button class="header__button" data-header-settings>
             <svg
               class="header__icon"
@@ -89,14 +93,14 @@
         </div>
       </div>
     </header>
-
+<!--List items-->
     <main class="list">
       <div class="list__items" data-list-items></div>
       <div class="list__message" data-list-message>No results found. Your filters might be too narrow.</div>
       <button class="list__button" data-list-button></button>
     </main>
 
-
+<!--Title-->
     <dialog class="overlay" data-list-active>
       <div class="overlay__preview"><img class="overlay__blur" data-list-blur src=""/><img class="overlay__image" data-list-image src=""/></div>
       <div class="overlay__content">
@@ -115,15 +119,18 @@
       <div class="overlay__content">
         <form class="overlay__form" data-search-form id="search">
           <label class="overlay__field">
+            <!--Title-->
             <div class="overlay__label">Title</div>
             <input class="overlay__input" data-search-title name="title" placeholder="Any"></input>
           </label>
 
+<!--Genre-->
           <label class="overlay__field">
             <div class="overlay__label">Genre</div>
             <select class="overlay__input overlay__input_select" data-search-genres name="genre"></select>
           </label>
 
+<!--Author info-->
           <label class="overlay__field">
             <div class="overlay__label">Author</div>
             <select class="overlay__input overlay__input_select" data-search-authors name="author">
@@ -131,6 +138,7 @@
           </label>
         </form>
 
+<!--Cancel and Search button-->
         <div class="overlay__row">
           <button class="overlay__button" data-search-cancel>Cancel</button>
           <button class="overlay__button overlay__button_primary" type="submit" form="search">Search</button>
@@ -138,6 +146,7 @@
       </div>
     </dialog>
 
+<!--Day and Night Mode-->
     <dialog class="overlay" data-settings-overlay>
       <div class="overlay__content">
         <form class="overlay__form" data-settings-form id="settings">
@@ -150,7 +159,7 @@
             </select>
           </label>
         </form>
-
+<!--Day and Night mode cancel button-->
         <div class="overlay__row">
           <button class="overlay__button" data-settings-cancel>Cancel</button>
           <button class="overlay__button overlay__button_primary" type="submit" form="settings">Save</button>
