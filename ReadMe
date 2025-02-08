@@ -82,3 +82,17 @@ Refactored code follows JavaScript best practices:
 
 Refactoring was not easy at all, but breaking it down but understanding the HTML and CSS strucutre first gave me direction. I then examined the Book Connect App and identified the errors. I went on to analyse the JavaScript part. Line by line. Adding comments for better understanding and readability. The code started to improve by those basic steps. I had to identity the parts of code that need Abstracrion, SOLID, documentation, comments and ESLint guidelines.This helped me to navigate throughout the code much easier. I made a lot of mistakes though on the modification part, I tried to edit the code and I realised that that made the code fail. I decided to stick to the basics and correct the code and not complicate it further.
 By implementing abstraction through objects and functions, the code is now more efficient, easier to extend, and adheres to best coding practices.
+
+In this code I have added:
+
+## theme.js
+
+## filters.js
+
+## footer.js
+
+## pagination.js
+
+## UI.js
+
+To make sure I make the code much more managageable and modular. Reducing bugs and errors. It will be much easier to navigate through the code in future with less bugs.
