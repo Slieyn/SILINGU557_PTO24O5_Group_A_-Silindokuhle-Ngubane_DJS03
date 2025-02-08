@@ -39,4 +39,3 @@ class BookFooter extends HTMLElement {
 customElements.define("book-footer", BookFooter);
 
 export { BookFooter };
-console.log("footer.js loaded");
