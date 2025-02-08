@@ -1,7 +1,5 @@
 # Written Report: Refactoring the Book Connect App
 
-#working on this one neh,,,
-
 ## Code Analysis
 
 The Book Connect app is a JavaScript based book, has an HTML and CSS strucutres. Including the Data.js file for the book information for the Authors. The app allows the user to search, filter, and view books based on different criteria such as title, author, and genre. The current implementation uses event listeners to handle user interactions and dynamically updates the UI.

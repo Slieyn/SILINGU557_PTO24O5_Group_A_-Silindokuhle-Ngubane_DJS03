@@ -1,74 +1,34 @@
 // Import from data.js
+// Import from footer.js
 import { books, authors, genres, BOOKS_PER_PAGE } from "./data.js";
+import "./footer.js";
 
+// Keeps track of the current page number in pagination.
+let page = 1; // Define page globally to avoid conflicts
+
+// Stores the filtered book results.
 let matches = books;
 
-// Class to manage book previews
-class BookPreview {
-  constructor({ author, id, image, title }) {
-    this.author = author;
-    this.id = id;
-    this.image = image;
-    this.title = title;
-  }
-
-  createElement() {
-    const element = document.createElement("button");
-    element.classList.add("preview");
-    element.setAttribute("data-preview", this.id);
-    element.innerHTML = `
-            <img class="preview__image" src="${this.image}" />
-            <div class="preview__info">
-                <h3 class="preview__title">${this.title}</h3>
-                <div class="preview__author">${authors[this.author]}</div>
-            </div>
-        `;
-    return element;
-  }
-}
-
-// Class to manage pagination and filtered books
-class BookManager {
-  constructor() {
-    this.page = 1;
-    this.matches = books; // Initially, matches contain all books
-    this.starting = document.createDocumentFragment();
-  }
-
-  generatePreviews() {
-    this.matches.slice(0, BOOKS_PER_PAGE).forEach((book) => {
-      const preview = new BookPreview(book);
-      document
-        .querySelector("[data-list-items]")
-        .appendChild(preview.createElement());
-    });
-  }
-}
+// Creates a document fragment to store book preview elements.
+const starting = document.createDocumentFragment();
 
 // Function to create a book preview button
-function createBookPreviewButton(book) {
-  const button = document.createElement("button");
-  button.classList.add("book-preview");
-  button.innerText = book.title;
-  button.addEventListener("click", () => {
-    // Add logic to handle button click, e.g., show book details
-    console.log(`Book selected: ${book.title}`);
-  });
-  return button;
+function createBookPreviewButton({ author, id, image, title }) {
+  const element = document.createElement("button");
+  element.classList = "preview";
+  element.setAttribute("data-preview", id);
+  element.innerHTML = `
+        <img class="preview__image" src="${image}" />
+        <div class="preview__info">
+            <h3 class="preview__title">${title}</h3>
+            <div class="preview__author">${authors[author]}</div>
+        </div>
+    `;
+  return element;
 }
-
-// Initialize and generate previews
-const bookManager = new BookManager();
-bookManager.generatePreviews();
-
-// Event listener to render book previews
-document.addEventListener("DOMContentLoaded", () => {
-  renderBookPreviews(books);
-});
 
 // Function to render book previews
 function renderBookPreviews(bookList) {
-  const starting = document.createDocumentFragment(); // Define the starting variable
   bookList.slice(0, BOOKS_PER_PAGE).forEach((book) => {
     const button = createBookPreviewButton(book);
     starting.appendChild(button);
@@ -77,7 +37,7 @@ function renderBookPreviews(bookList) {
 }
 
 // Render initial book previews
-renderBookPreviews(bookManager.matches);
+renderBookPreviews(matches);
 
 // Function to populate dropdown menus
 function populateDropdown(data, dropdownSelector, defaultText) {
@@ -142,7 +102,7 @@ function updateShowMoreButton(totalBooks, currentPage, booksPerPage) {
 }
 
 // Initialize "Show More" button state
-updateShowMoreButton(matches.length, bookManager.page, BOOKS_PER_PAGE);
+updateShowMoreButton(matches.length, page, BOOKS_PER_PAGE);
 
 // Function to toggle overlay visibility
 function toggleOverlay(overlaySelector, isOpen) {
@@ -153,6 +113,11 @@ function toggleOverlay(overlaySelector, isOpen) {
     console.error(`Overlay not found: ${overlaySelector}`);
   }
 }
+// Event listener for footer
+document.addEventListener("DOMContentLoaded", () => {
+  const footer = document.createElement("book-footer");
+  document.body.appendChild(footer);
+});
 
 // Event listeners for overlay actions
 document
@@ -221,11 +186,8 @@ document
     const filters = Object.fromEntries(formData);
     const result = filterBooks(filters);
 
-    // Reset page number to 1 and update matches with the filtered books.
-    bookManager.page = 1;
-
-    //  Updates reassigned with the filtered books based on the search criteria.
-    bookManager.matches = result;
+    page = 1; // Reset page count on new search
+    matches = result;
 
     // Show or hide 'no results' message
     const messageElement = document.querySelector("[data-list-message]");
@@ -238,11 +200,7 @@ document
     // Clear and update book list display
     document.querySelector("[data-list-items]").innerHTML = "";
     renderBookPreviews(result);
-    updateShowMoreButton(
-      bookManager.matches.length,
-      bookManager.page,
-      BOOKS_PER_PAGE
-    );
+    updateShowMoreButton(matches.length, page, BOOKS_PER_PAGE);
 
     // Scroll to top and close search overlay
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -253,15 +211,15 @@ document
 document.querySelector("[data-list-button]").addEventListener("click", () => {
   const fragment = document.createDocumentFragment();
   const nextBooks = matches.slice(
-    bookManager.page * BOOKS_PER_PAGE,
-    (bookManager.page + 1) * BOOKS_PER_PAGE
+    page * BOOKS_PER_PAGE, // Finds the starting index.
+    (page + 1) * BOOKS_PER_PAGE //Finds the ending index.
   );
   nextBooks.forEach((book) => {
     const button = createBookPreviewButton(book);
     fragment.appendChild(button);
   });
   document.querySelector("[data-list-items]").appendChild(fragment);
-  bookManager.page += 1;
+  page += 1;
 });
 
 // Event listener for handling book preview clicks
