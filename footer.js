@@ -24,12 +24,14 @@ class BookFooter extends HTMLElement {
           background-color: #222;  /* Dark background for contrast */
           color: white;            /* White text for readability */
           text-align: center;      /* Center align text */
-          padding: 15px;           /* Space around content */
-          font-size: 14px;         /* Standard font size */
+          padding: 8px;          /* Space around content */
+          font-size:12px;        /* Standard font size */
           position: fixed;         /* Fix footer at the bottom */
           bottom: 0;
           left: 0;
           width: 100%;
+          margiin-botton: 0;
+          
         }
 
         /* Footer links */
